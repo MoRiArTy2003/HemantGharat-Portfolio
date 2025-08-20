@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Hemant Gharat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Allura&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="portfolio.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Hemant Gharat</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="portfolio.html" class="nav-link active">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a href="news.html" class="nav-link">News</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Portfolio Header -->
+    <section class="portfolio-header">
+        <div class="container">
+            <h1 class="page-title">Portfolio</h1>
+            <p class="page-subtitle">A collection of my creative work in calligraphy, abstract painting, and interior design</p>
+        </div>
+    </section>
+
+    <!-- Portfolio Filters -->
+    <section class="portfolio-filters">
+        <div class="container">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Work</button>
+                <button class="filter-btn" data-filter="calligraphy">Calligraphy & Design</button>
+                <button class="filter-btn" data-filter="abstract">Abstract Painting</button>
+                <button class="filter-btn" data-filter="interior">Interior Design</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Grid -->
+    <section class="portfolio-grid">
+        <div class="container">
+            <div class="portfolio-items">
+                <!-- Calligraphy & Design 1 -->
+                <div class="portfolio-item" data-category="calligraphy">
+                    <div class="portfolio-image">
+                        <img src="images/Misc/PHOTO-2025-07-25-10-34-02.jpg" alt="Elegant Script - Calligraphy Work">
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <h3>Elegant Script</h3>
+                                <p>Hand-lettered calligraphy, 2024</p>
+                                <button class="view-project-btn">View Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Abstract Painting 1 -->
+                <div class="portfolio-item" data-category="abstract">
+                    <div class="portfolio-image">
+                        <img src="images/Paintings/PHOTO-2025-07-25-10-34-00.jpg" alt="Abstract Harmony - Oil Painting">
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <h3>Abstract Harmony</h3>
+                                <p>Oil on canvas, 2024</p>
+                                <button class="view-project-btn">View Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interior Design 1 -->
+                <div class="portfolio-item" data-category="interior">
+                    <div class="portfolio-image">
+                        <img src="images/Misc/PHOTO-2025-07-25-10-34-13.jpg" alt="Modern Living Space - Interior Design">
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <h3>Modern Living Space</h3>
+                                <p>Residential interior design, 2024</p>
+                                <button class="view-project-btn">View Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calligraphy & Design 2 -->
+                <div class="portfolio-item" data-category="calligraphy">
+                    <div class="portfolio-image">
+                        <img src="images/Misc/PHOTO-2025-07-25-10-34-12.jpg" alt="Wedding Invitations - Calligraphy Design">
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <h3>Wedding Invitations</h3>
+                                <p>Custom calligraphy design, 2024</p>
+                                <button class="view-project-btn">View Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Abstract Painting 2 -->
+                <div class="portfolio-item" data-category="abstract">
+                    <div class="portfolio-image">
+                        <img src="images/Paintings/PHOTO-2025-07-25-10-34-01.jpg" alt="Color Symphony - Acrylic Painting">
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <h3>Color Symphony</h3>
+                                <p>Acrylic on canvas, 2024</p>
+                                <button class="view-project-btn">View Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interior Design 2 -->
+                <div class="portfolio-item" data-category="interior">
+                    <div class="portfolio-image">
+                        <img src="images/Misc/PHOTO-2025-07-25-10-34-11.jpg" alt="Cozy Corner - Living Room Design">
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <h3>Cozy Corner</h3>
+                                <p>Living room design, 2024</p>
+                                <button class="view-project-btn">View Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calligraphy & Design 3 -->
+                <div class="portfolio-item" data-category="calligraphy">
+                    <div class="portfolio-image">
+                        <img src="images/Misc/PHOTO-2025-07-25-10-34-10.jpg" alt="Inspirational Quotes - Calligraphy Artwork">
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <h3>Inspirational Quotes</h3>
+                                <p>Calligraphy artwork, 2024</p>
+                                <button class="view-project-btn">View Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Abstract Painting 3 -->
+                <div class="portfolio-item" data-category="abstract">
+                    <div class="portfolio-image">
+                        <img src="images/Paintings/PHOTO-2025-07-25-10-34-02.jpg" alt="Emotional Flow - Mixed Media">
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <h3>Emotional Flow</h3>
+                                <p>Mixed media on canvas, 2024</p>
+                                <button class="view-project-btn">View Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interior Design 3 -->
+                <div class="portfolio-item" data-category="interior">
+                    <div class="portfolio-image">
+                        <img src="images/Misc/PHOTO-2025-07-25-10-34-16.jpg" alt="Serene Bedroom - Master Bedroom Design">
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <h3>Serene Bedroom</h3>
+                                <p>Master bedroom design, 2024</p>
+                                <button class="view-project-btn">View Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Abstract Painting 4 -->
+                <div class="portfolio-item" data-category="abstract">
+                    <div class="portfolio-image">
+                        <img src="images/Paintings/PHOTO-2025-07-25-10-34-03.jpg" alt="Vibrant Expression - Abstract Art">
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <h3>Vibrant Expression</h3>
+                                <p>Abstract composition, 2024</p>
+                                <button class="view-project-btn">View Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calligraphy & Design 4 -->
+                <div class="portfolio-item" data-category="calligraphy">
+                    <div class="portfolio-image">
+                        <img src="images/Misc/PHOTO-2025-07-25-10-34-03.jpg" alt="Artistic Lettering - Calligraphy Design">
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <h3>Artistic Lettering</h3>
+                                <p>Modern calligraphy design, 2024</p>
+                                <button class="view-project-btn">View Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interior Design 4 -->
+                <div class="portfolio-item" data-category="interior">
+                    <div class="portfolio-image">
+                        <img src="images/Misc/PHOTO-2025-07-25-10-34-04.jpg" alt="Contemporary Space - Interior Design">
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <h3>Contemporary Space</h3>
+                                <p>Modern interior design, 2024</p>
+                                <button class="view-project-btn">View Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modal -->
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <div class="modal-image-placeholder">
+                        <i class="fas fa-image"></i>
+                    </div>
+                </div>
+                <div class="modal-info">
+                    <h2 id="modalTitle">Project Title</h2>
+                    <p id="modalDescription">Project description goes here...</p>
+                    <div class="project-details">
+                        <div class="detail-item">
+                            <strong>Category:</strong> <span id="modalCategory">Calligraphy & Design</span>
+                        </div>
+                        <div class="detail-item">
+                            <strong>Year:</strong> <span id="modalYear">2024</span>
+                        </div>
+                        <div class="detail-item">
+                            <strong>Medium:</strong> <span id="modalMedium">Hand-lettered calligraphy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Hemant Gharat</h3>
+                    <p>Contemporary artist and designer</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>hello@hemantgharat.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Hemant Gharat. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="portfolio.js"></script>
+</body>
+</html> 

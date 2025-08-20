@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News - Hemant Gharat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Allura&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="news.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Hemant Gharat</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="portfolio.html" class="nav-link">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a href="news.html" class="nav-link active">News</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- News Header -->
+    <section class="news-header">
+        <div class="container">
+            <h1 class="page-title">News & Media</h1>
+            <p class="page-subtitle">Press coverage, interviews, and media mentions featuring my work</p>
+        </div>
+    </section>
+
+    <!-- News Categories -->
+    <section class="news-categories">
+        <div class="container">
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">All News</button>
+                <button class="category-btn" data-category="press">Press Coverage</button>
+                <button class="category-btn" data-category="interviews">Interviews</button>
+                <button class="category-btn" data-category="awards">Awards & Recognition</button>
+                <button class="category-btn" data-category="exhibitions">Exhibitions</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Grid -->
+    <section class="news-grid">
+        <div class="container">
+            <div class="news-items">
+                <!-- Press Coverage 1 -->
+                <div class="news-item" data-category="press">
+                    <div class="news-image">
+                        <img src="images/News/PHOTO-2025-07-25-10-33-59.jpg" alt="Art & Design Magazine Feature">
+                        <div class="news-overlay">
+                            <div class="overlay-content">
+                                <h3>Art & Design Magazine Feature</h3>
+                                <p>Featured artist in the latest issue</p>
+                                <button class="view-news-btn">Read Article</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-info">
+                        <div class="news-meta">
+                            <span class="news-date">March 2024</span>
+                            <span class="news-category">Press Coverage</span>
+                        </div>
+                        <h3>Art & Design Magazine Feature</h3>
+                        <p>Featured as one of the emerging artists in contemporary calligraphy and design</p>
+                    </div>
+                </div>
+
+                <!-- Interview 1 -->
+                <div class="news-item" data-category="interviews">
+                    <div class="news-image">
+                        <img src="images/News/PHOTO-2025-07-25-10-34-03.jpg" alt="Creative Process Interview">
+                        <div class="news-overlay">
+                            <div class="overlay-content">
+                                <h3>Creative Process Interview</h3>
+                                <p>Insights into artistic methodology</p>
+                                <button class="view-news-btn">Watch Interview</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-info">
+                        <div class="news-meta">
+                            <span class="news-date">February 2024</span>
+                            <span class="news-category">Interview</span>
+                        </div>
+                        <h3>Creative Process Interview</h3>
+                        <p>In-depth discussion about the creative process behind calligraphy and design work</p>
+                    </div>
+                </div>
+
+                <!-- Award 1 -->
+                <div class="news-item" data-category="awards">
+                    <div class="news-image">
+                        <img src="images/News/PHOTO-2025-07-25-10-34-03(1).jpg" alt="Design Excellence Award">
+                        <div class="news-overlay">
+                            <div class="overlay-content">
+                                <h3>Design Excellence Award</h3>
+                                <p>Recognition for outstanding work</p>
+                                <button class="view-news-btn">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-info">
+                        <div class="news-meta">
+                            <span class="news-date">January 2024</span>
+                            <span class="news-category">Award</span>
+                        </div>
+                        <h3>Design Excellence Award</h3>
+                        <p>Received the prestigious Design Excellence Award for innovative calligraphy work</p>
+                    </div>
+                </div>
+
+                <!-- Exhibition 1 -->
+                <div class="news-item" data-category="exhibitions">
+                    <div class="news-image">
+                        <img src="images/News/PHOTO-2025-07-25-10-34-04.jpg" alt="Solo Exhibition Opening">
+                        <div class="news-overlay">
+                            <div class="overlay-content">
+                                <h3>Solo Exhibition Opening</h3>
+                                <p>Contemporary Art Gallery</p>
+                                <button class="view-news-btn">View Exhibition</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-info">
+                        <div class="news-meta">
+                            <span class="news-date">December 2023</span>
+                            <span class="news-category">Exhibition</span>
+                        </div>
+                        <h3>Solo Exhibition Opening</h3>
+                        <p>Successful opening of "Harmony in Form" solo exhibition at Contemporary Art Gallery</p>
+                    </div>
+                </div>
+
+                <!-- Press Coverage 2 -->
+                <div class="news-item" data-category="press">
+                    <div class="news-image">
+                        <img src="images/News/PHOTO-2025-07-25-10-34-06.jpg" alt="Local News Feature">
+                        <div class="news-overlay">
+                            <div class="overlay-content">
+                                <h3>Local News Feature</h3>
+                                <p>Community spotlight article</p>
+                                <button class="view-news-btn">Read Article</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-info">
+                        <div class="news-meta">
+                            <span class="news-date">November 2023</span>
+                            <span class="news-category">Press Coverage</span>
+                        </div>
+                        <h3>Local News Feature</h3>
+                        <p>Featured in local newspaper for contributions to the arts community</p>
+                    </div>
+                </div>
+
+                <!-- Interview 2 -->
+                <div class="news-item" data-category="interviews">
+                    <div class="news-image">
+                        <img src="images/News/PHOTO-2025-07-25-10-34-06(1).jpg" alt="Podcast Interview">
+                        <div class="news-overlay">
+                            <div class="overlay-content">
+                                <h3>Podcast Interview</h3>
+                                <p>Art & Creativity Podcast</p>
+                                <button class="view-news-btn">Listen Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-info">
+                        <div class="news-meta">
+                            <span class="news-date">October 2023</span>
+                            <span class="news-category">Interview</span>
+                        </div>
+                        <h3>Podcast Interview</h3>
+                        <p>Guest appearance on "Art & Creativity" podcast discussing interior design philosophy</p>
+                    </div>
+                </div>
+
+                <!-- Award 2 -->
+                <div class="news-item" data-category="awards">
+                    <div class="news-image">
+                        <img src="images/News/PHOTO-2025-07-25-10-34-10.jpg" alt="Artist of the Year Award">
+                        <div class="news-overlay">
+                            <div class="overlay-content">
+                                <h3>Artist of the Year</h3>
+                                <p>Regional Arts Council</p>
+                                <button class="view-news-btn">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-info">
+                        <div class="news-meta">
+                            <span class="news-date">September 2023</span>
+                            <span class="news-category">Award</span>
+                        </div>
+                        <h3>Artist of the Year</h3>
+                        <p>Named Artist of the Year by the Regional Arts Council for outstanding contributions</p>
+                    </div>
+                </div>
+
+                <!-- Exhibition 2 -->
+                <div class="news-item" data-category="exhibitions">
+                    <div class="news-image">
+                        <img src="images/News/PHOTO-2025-07-25-10-34-10(1).jpg" alt="Group Exhibition">
+                        <div class="news-overlay">
+                            <div class="overlay-content">
+                                <h3>Group Exhibition</h3>
+                                <p>Modern Art Collective</p>
+                                <button class="view-news-btn">View Exhibition</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-info">
+                        <div class="news-meta">
+                            <span class="news-date">August 2023</span>
+                            <span class="news-category">Exhibition</span>
+                        </div>
+                        <h3>Group Exhibition</h3>
+                        <p>Participated in "Contemporary Perspectives" group exhibition with Modern Art Collective</p>
+                    </div>
+                </div>
+
+                <!-- Press Coverage 3 -->
+                <div class="news-item" data-category="press">
+                    <div class="news-image">
+                        <img src="images/News/PHOTO-2025-07-25-10-34-23.jpg" alt="Design Blog Feature">
+                        <div class="news-overlay">
+                            <div class="overlay-content">
+                                <h3>Design Blog Feature</h3>
+                                <p>Online design publication</p>
+                                <button class="view-news-btn">Read Article</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-info">
+                        <div class="news-meta">
+                            <span class="news-date">July 2023</span>
+                            <span class="news-category">Press Coverage</span>
+                        </div>
+                        <h3>Design Blog Feature</h3>
+                        <p>Featured in prominent design blog discussing modern calligraphy trends</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Modal -->
+    <div class="modal" id="newsModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <div class="modal-image-placeholder">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                </div>
+                <div class="modal-info">
+                    <h2 id="modalTitle">News Title</h2>
+                    <p id="modalDescription">News description goes here...</p>
+                    <div class="news-details">
+                        <div class="detail-item">
+                            <strong>Date:</strong> <span id="modalDate">March 2024</span>
+                        </div>
+                        <div class="detail-item">
+                            <strong>Category:</strong> <span id="modalCategory">Press Coverage</span>
+                        </div>
+                        <div class="detail-item">
+                            <strong>Source:</strong> <span id="modalSource">Art & Design Magazine</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Hemant Gharat</h3>
+                    <p>Contemporary artist and designer</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>hello@hemantgharat.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Hemant Gharat. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="news.js"></script>
+</body>
+</html>
+

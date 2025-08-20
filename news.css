@@ -1,0 +1,442 @@
+/* News Page Specific Styles */
+
+/* News Header */
+.news-header {
+    padding: 120px 20px 60px 20px; /* Added side padding */
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    text-align: center;
+    max-width: 100vw; /* Prevent overflow */
+    overflow: hidden;
+}
+
+.page-title {
+    font-family: 'Allura', cursive;
+    font-size: 4rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.page-subtitle {
+    font-size: 1.25rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* News Categories */
+.news-categories {
+    padding: 2rem 20px; /* Added side padding */
+    background: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+.category-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.category-btn {
+    padding: 12px 24px; /* Slightly larger buttons */
+    border: 2px solid #333;
+    background: transparent;
+    color: #333;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+}
+
+.category-btn:hover,
+.category-btn.active {
+    background: #333;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* News Grid */
+.news-grid {
+    padding: 4rem 20px; /* Added side padding */
+    background: #f8f9fa;
+}
+
+.news-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.news-item {
+    background: white;
+    border-radius: 15px; /* More rounded */
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.news-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.news-image {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+.news-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.news-item:hover .news-image img {
+    transform: scale(1.05);
+}
+
+.news-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.news-item:hover .news-overlay {
+    opacity: 1;
+}
+
+.overlay-content {
+    text-align: center;
+    color: white;
+    padding: 2rem;
+}
+
+.overlay-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.overlay-content p {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+.view-news-btn {
+    padding: 8px 16px;
+    background: white;
+    color: #333;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.view-news-btn:hover {
+    background: #333;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.news-info {
+    padding: 1.5rem;
+}
+
+.news-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+}
+
+.news-date {
+    color: #666;
+    font-weight: 500;
+}
+
+.news-category {
+    background: #f0f0f0;
+    color: #333;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-weight: 500;
+}
+
+.news-info h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+    color: #333;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.news-info p {
+    color: #666;
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 0;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #333;
+    background: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.close-modal:hover {
+    background: #333;
+    color: white;
+}
+
+.modal-body {
+    padding: 2rem;
+    position: relative;
+}
+
+.modal-image {
+    width: 100%;
+    height: 300px;
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.modal-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    color: #ccc;
+    background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+}
+
+.modal-info h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.modal-info p {
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.news-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.detail-item {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.detail-item strong {
+    display: block;
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.detail-item span {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .news-items {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+    
+    .page-title {
+        font-size: 3.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-title {
+        font-family: 'Allura', cursive;
+        font-size: 3rem;
+        font-weight: 400;
+    }
+
+    .news-header {
+        padding: 100px 20px 40px 20px;
+    }
+
+    .category-buttons {
+        gap: 0.5rem;
+    }
+
+    .category-btn {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+
+    .news-items {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+
+    .modal-body {
+        padding: 1.5rem;
+    }
+
+    .modal-info h2 {
+        font-size: 1.5rem;
+    }
+
+    .modal-image-placeholder {
+        height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title {
+        font-family: 'Allura', cursive;
+        font-size: 2.5rem;
+        font-weight: 400;
+    }
+
+    .page-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .category-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .category-btn {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .news-items {
+        gap: 1rem;
+    }
+
+    .news-image {
+        height: 200px;
+    }
+
+    .overlay-content {
+        padding: 1rem;
+    }
+
+    .overlay-content h3 {
+        font-size: 1.1rem;
+    }
+
+    .modal-info h2 {
+        font-size: 1.3rem;
+    }
+}
+
+/* Animation for news items */
+.news-item {
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.news-item:nth-child(1) { animation-delay: 0.1s; }
+.news-item:nth-child(2) { animation-delay: 0.2s; }
+.news-item:nth-child(3) { animation-delay: 0.3s; }
+.news-item:nth-child(4) { animation-delay: 0.4s; }
+.news-item:nth-child(5) { animation-delay: 0.5s; }
+.news-item:nth-child(6) { animation-delay: 0.6s; }
+.news-item:nth-child(7) { animation-delay: 0.7s; }
+.news-item:nth-child(8) { animation-delay: 0.8s; }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
