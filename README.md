@@ -1,4 +1,4 @@
-# Maegan Guerette - Artist Portfolio Website
+# Hemant Gharat - Artist Portfolio Website
 
 A modern, responsive artist portfolio website inspired by contemporary design principles. This website showcases artwork, provides information about the artist, and offers multiple ways for visitors to get in touch.
 
@@ -208,7 +208,7 @@ This project is open source and available under the [MIT License](LICENSE).
 For questions or support:
 - Create an issue in the repository
 - Contact through the website's contact form
-- Email: hello@maeganguerette.com
+- Email: 
 
 ---
 
