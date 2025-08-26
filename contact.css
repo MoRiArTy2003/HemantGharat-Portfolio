@@ -141,23 +141,26 @@
 
 .contact-item {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 2rem;
-    padding: 1rem;
+    padding: 1.5rem;
     background: white;
-    border-radius: 10px;
+    border-radius: 12px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 4px solid #333;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .contact-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border-left-color: #666;
 }
 
 .contact-icon {
     width: 50px;
     height: 50px;
-    background: #333;
+    background: linear-gradient(135deg, #333 0%, #666 100%);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -165,6 +168,8 @@
     margin-right: 1rem;
     color: white;
     font-size: 1.2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
 }
 
 .contact-details h3 {

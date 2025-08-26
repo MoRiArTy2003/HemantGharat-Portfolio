@@ -1,3 +1,20 @@
+/* CSS Variables for consistent theming */
+:root {
+    --primary-color: #333;
+    --secondary-color: #666;
+    --accent-color: #000;
+    --background-color: #fff;
+    --light-bg: #f8f9fa;
+    --border-color: rgba(0, 0, 0, 0.05);
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --shadow-medium: rgba(0, 0, 0, 0.15);
+    --shadow-heavy: rgba(0, 0, 0, 0.2);
+    --transition-fast: 0.3s ease;
+    --transition-medium: 0.5s ease;
+    --border-radius: 12px;
+    --container-max-width: 1200px;
+}
+
 /* Reset and Base Styles */
 * {
     margin: 0;
@@ -8,13 +25,15 @@
 body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
-    color: #333;
-    background-color: #fff;
+    color: var(--primary-color);
+    background-color: var(--background-color);
     overflow-x: hidden; /* Prevent horizontal scroll */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
-    max-width: 1200px;
+    max-width: var(--container-max-width);
     margin: 0 auto;
     padding: 0 20px;
 }

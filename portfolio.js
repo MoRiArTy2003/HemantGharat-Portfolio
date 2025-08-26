@@ -1,225 +1,405 @@
-// Portfolio Page JavaScript
+// Portfolio Page JavaScript - Isolated Version with Enhanced Animations
 
-// Portfolio filtering functionality
-const filterButtons = document.querySelectorAll('.filter-btn');
-const portfolioItems = document.querySelectorAll('.portfolio-item');
+// Use a unique namespace to avoid conflicts
+window.PortfolioPage = window.PortfolioPage || {};
 
-filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const filter = button.getAttribute('data-filter');
+(function() {
+    'use strict';
+    
+    // Initialize when DOM is ready
+    function initPortfolioPage() {
+        console.log('Initializing Portfolio Page functionality...');
         
-        // Update active button
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
+        // Check if we're on the portfolio page
+        const portfolioContainer = document.querySelector('.portfolio-items');
+        if (!portfolioContainer) {
+            console.log('Not on portfolio page, skipping initialization');
+            return;
+        }
         
-        // Filter portfolio items with animation
-        portfolioItems.forEach(item => {
-            const category = item.getAttribute('data-category');
+        // Get all elements
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const modal = document.getElementById('projectModal');
+        const closeModal = document.querySelector('.close-modal');
+        const viewProjectBtns = document.querySelectorAll('.view-project-btn');
+        
+        // Helpers
+        function normalizeSrc(src) { return (src || '').replace(/\\/g, '/').replace(/\s+/g, '%20'); }
+        function fileBase(src) {
+            const s = normalizeSrc(src);
+            const name = s.split('/').pop() || '';
+            return name.replace(/\.[^.]+$/, '');
+        }
+        function prettifyFromFilename(src) {
+            const base = fileBase(src);
+            // Remove common camera-like prefixes
+            const cleaned = base.replace(/^PHOTO[-_]/i, '')
+                                .replace(/\d{4}-\d{2}-\d{2}[-_]\d{2}[-_]\d{2}[-_]\d{2}(\([0-9]+\))?/g, '')
+                                .replace(/[-_]+/g, ' ')
+                                .trim();
+            if (cleaned) return cleaned.replace(/\b\w/g, c => c.toUpperCase());
+            return 'Untitled Work';
+        }
+        function descriptionForCategory(category) {
+            switch (category) {
+                case 'calligraphy': return 'Hand-crafted lettering exploring rhythm, balance, and negative space.';
+                case 'abstract': return 'Expressive composition focusing on color, form, and texture.';
+                case 'interior': return 'Functional spatial design emphasizing comfort, light, and materiality.';
+                default: return 'Original creative work from the studio.';
+            }
+        }
+        
+        // BEGIN dynamic append from user-provided lists with de-duplication
+        if (portfolioContainer && !portfolioContainer.dataset.generated) {
+            const existingSrcSet = new Set(
+                Array.from(document.querySelectorAll('.portfolio-image img'))
+                    .map(img => normalizeSrc(img.getAttribute('src')))
+            );
             
-            if (filter === 'all' || category === filter) {
+            const calligraphyImages = [
+                'images/Paintings/PHOTO-2025-07-25-10-34-28(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-28(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-29(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-29.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-30(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-30.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-31(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-31(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-31(3).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-32(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-33(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-33(3).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-35-02(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-35-02(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-36(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-36(2).jpg'
+            ];
+            const interiorImages = [
+                'images/Misc/PHOTO-2025-07-25-10-33-58.jpg',
+                'images/Misc/PHOTO-2025-07-25-10-34-02(1).jpg',
+                'images/Misc/PHOTO-2025-07-25-10-34-23.jpg',
+                'images/Misc/PHOTO-2025-07-25-10-34-45.jpg',
+                'images/Misc/PHOTO-2025-07-25-10-34-46.jpg',
+                'images/Misc/PHOTO-2025-07-25-10-34-17(2).jpg'
+            ];
+            const abstractImages = [
+                'images/Paintings/PHOTO-2025-07-25-10-33-58.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-33-59.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-00(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-00(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-00.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-01(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-01(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-01.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-02.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-04(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-04.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-05(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-05(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-05.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-06(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-06.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-07(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-07(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-07.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-08(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-08(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-08.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-09(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-09.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-11.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-14(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-14(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-14.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-15(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-15(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-15(3).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-15.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-16.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-18(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-18.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-19(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-19.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-20.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-21(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-21(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-21.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-22.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-24(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-24(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-24.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-25(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-25(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-25.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-26(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-26(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-26(3).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-26.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-27(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-27(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-27.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-33(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-33.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-34(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-34(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-34.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-35(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-35(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-35(3).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-35.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-36(3).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-36.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-37.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-38(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-38(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-38(3).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-38.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-39(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-39.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-40(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-40(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-40.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-41(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-41(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-41(3).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-41.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-42(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-42(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-42.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-43(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-43(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-43(3).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-43.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-44(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-44(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-44.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-45(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-45(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-45(3).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-45.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-46(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-46.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-47(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-47(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-47(3).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-47.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-48(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-48(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-48.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-49(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-49(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-49(3).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-49.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-50(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-50(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-50.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-51(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-51.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-52(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-52(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-52.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-53(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-53(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-53(3).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-53.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-54(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-54(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-54.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-55(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-55.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-56(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-56(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-56.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-57(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-57.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-58(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-58(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-58.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-59(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-34-59.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-35-00(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-35-00.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-35-02.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-35-03(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-35-03.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-35-04(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-35-04(2).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-35-04.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-35-05.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-35-06.jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-35-07(1).jpg',
+                'images/Paintings/PHOTO-2025-07-25-10-35-07.jpg',
+                'images/Misc/PHOTO-2025-07-25-10-34-13(2).jpg',
+                'images/Misc/PHOTO-2025-07-25-10-34-13.jpg',
+                'images/Misc/PHOTO-2025-07-25-10-34-21.jpg',
+                'images/Misc/PHOTO-2025-07-25-10-34-37.jpg'
+            ];
+            function createItem(src, title, subtitle, cat) {
+                const el = document.createElement('div');
+                el.className = 'portfolio-item';
+                el.setAttribute('data-category', cat);
+                const smartTitle = prettifyFromFilename(src) || title;
+                const smartDesc = subtitle || descriptionForCategory(cat);
+                el.innerHTML = `
+                    <div class="portfolio-image">
+                        <img src="${src}" alt="${smartTitle}" loading="lazy" decoding="async">
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <h3>${smartTitle}</h3>
+                                <p>${smartDesc}</p>
+                                <button class="view-project-btn">View Project</button>
+                            </div>
+                        </div>
+                    </div>`;
+                return el;
+            }
+            [...calligraphyImages.map(s => ({s, c:'calligraphy'})),
+             ...interiorImages.map(s => ({s, c:'interior'})),
+             ...abstractImages.map(s => ({s, c:'abstract'}))]
+             .forEach(({s, c}) => {
+                const norm = normalizeSrc(s);
+                if (!existingSrcSet.has(norm)) {
+                    existingSrcSet.add(norm);
+                    portfolioContainer.appendChild(createItem(norm, 'Portfolio Work', descriptionForCategory(c), c));
+                }
+             });
+            portfolioContainer.dataset.generated = 'true';
+        }
+        // END dynamic append
+
+        // Relabel existing static cards with smart titles/descriptions
+        (function relabelExisting() {
+            document.querySelectorAll('.portfolio-item').forEach(item => {
+                const img = item.querySelector('.portfolio-image img');
+                const cat = item.getAttribute('data-category') || 'portfolio';
+                const titleEl = item.querySelector('.overlay-content h3');
+                const descEl = item.querySelector('.overlay-content p');
+                if (img && titleEl && descEl) {
+                    const generatedTitle = prettifyFromFilename(img.getAttribute('src'));
+                    if (generatedTitle) titleEl.textContent = generatedTitle;
+                    if (!descEl.textContent || /Calligraphy|Abstract|Interior|Project|Design|Painting/i.test(descEl.textContent)) {
+                        descEl.textContent = descriptionForCategory(cat);
+                    }
+                    img.alt = titleEl.textContent;
+                }
+            });
+        })();
+        
+        // Filtering with animations
+        function initPortfolioFiltering() {
+            const allItems = () => document.querySelectorAll('.portfolio-item');
+            filterButtons.forEach(function(button) {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const filter = this.getAttribute('data-filter');
+                    filterButtons.forEach(function(btn) {
+                        btn.classList.remove('active');
+                        btn.style.transform = 'translateY(0) scale(1)';
+                    });
+                    this.classList.add('active');
+                    this.style.transform = 'translateY(-3px) scale(1.05)';
+                    let visibleCount = 0;
+                    allItems().forEach(function(item) {
+                        const category = item.getAttribute('data-category');
+                        const matches = filter === 'all' || category === filter;
+                        if (matches) {
                 item.style.display = 'block';
                 setTimeout(() => {
                     item.style.opacity = '1';
-                    item.style.transform = 'translateY(0)';
-                }, 100);
+                                item.style.transform = 'translateY(0) scale(1)';
+                            }, visibleCount * 60);
+                            visibleCount++;
             } else {
                 item.style.opacity = '0';
-                item.style.transform = 'translateY(20px)';
-                setTimeout(() => {
-                    item.style.display = 'none';
-                }, 300);
+                            item.style.transform = 'translateY(20px) scale(0.95)';
+                            setTimeout(() => { item.style.display = 'none'; }, 250);
             }
         });
     });
 });
-
-// Modal functionality
-const modal = document.getElementById('projectModal');
-const closeModal = document.querySelector('.close-modal');
-const viewProjectBtns = document.querySelectorAll('.view-project-btn');
-
-// Project data (in a real application, this would come from a database)
-const projectData = {
-    'Elegant Script': {
-        title: 'Elegant Script',
-        description: 'A beautiful hand-lettered calligraphy piece showcasing elegant script writing. This work demonstrates mastery of traditional calligraphy techniques with modern design principles.',
-        category: 'Calligraphy & Design',
-        year: '2024',
-        medium: 'Hand-lettered calligraphy'
-    },
-    'Abstract Harmony': {
-        title: 'Abstract Harmony',
-        description: 'A contemporary abstract painting that explores the relationship between color, form, and emotion. This piece was created using oil on canvas and represents a personal journey through artistic expression.',
-        category: 'Abstract Painting',
-        year: '2024',
-        medium: 'Oil on canvas'
-    },
-    'Modern Living Space': {
-        title: 'Modern Living Space',
-        description: 'A sophisticated residential interior design project that combines modern aesthetics with functional living. This space emphasizes clean lines, natural materials, and comfortable living.',
-        category: 'Interior Design',
-        year: '2024',
-        medium: 'Residential interior design'
-    },
-    'Wedding Invitations': {
-        title: 'Wedding Invitations',
-        description: 'Custom calligraphy design for wedding invitations featuring elegant typography and sophisticated layout. Each invitation is hand-crafted with attention to detail and personal touch.',
-        category: 'Calligraphy & Design',
-        year: '2024',
-        medium: 'Custom calligraphy design'
-    },
-    'Color Symphony': {
-        title: 'Color Symphony',
-        description: 'An acrylic painting that celebrates the power of color and its ability to evoke emotion. This piece uses bold, vibrant colors to create a sense of energy and movement.',
-        category: 'Abstract Painting',
-        year: '2024',
-        medium: 'Acrylic on canvas'
-    },
-    'Cozy Corner': {
-        title: 'Cozy Corner',
-        description: 'A warm and inviting living room design that creates the perfect space for relaxation and entertainment. This design focuses on comfort, functionality, and aesthetic appeal.',
-        category: 'Interior Design',
-        year: '2024',
-        medium: 'Living room design'
-    },
-    'Inspirational Quotes': {
-        title: 'Inspirational Quotes',
-        description: 'Calligraphy artwork featuring inspirational quotes and meaningful words. Each piece is carefully crafted to inspire and motivate through beautiful typography and thoughtful design.',
-        category: 'Calligraphy & Design',
-        year: '2024',
-        medium: 'Calligraphy artwork'
-    },
-    'Emotional Flow': {
-        title: 'Emotional Flow',
-        description: 'A mixed media abstract painting that captures the flow of emotions through dynamic brushstrokes and layered textures. This piece explores the connection between art and human emotion.',
-        category: 'Abstract Painting',
-        year: '2024',
-        medium: 'Mixed media on canvas'
-    },
-    'Serene Bedroom': {
-        title: 'Serene Bedroom',
-        description: 'A peaceful master bedroom design that promotes rest and relaxation. This space features calming colors, soft textures, and thoughtful lighting to create the perfect sanctuary.',
-        category: 'Interior Design',
-        year: '2024',
-        medium: 'Master bedroom design'
-    }
-};
-
-// Open modal when clicking on project
-viewProjectBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const projectTitle = btn.closest('.overlay-content').querySelector('h3').textContent;
-        openModal(projectTitle);
-    });
-});
-
-// Open modal function
-function openModal(projectTitle) {
-    const project = projectData[projectTitle];
-    if (project) {
-        document.getElementById('modalTitle').textContent = project.title;
-        document.getElementById('modalDescription').textContent = project.description;
-        document.getElementById('modalCategory').textContent = project.category;
-        document.getElementById('modalYear').textContent = project.year;
-        document.getElementById('modalMedium').textContent = project.medium;
+        }
         
+        // Add lazy-loading and broken-image cleanup to all images
+        function enhanceImages() {
+            const imgs = document.querySelectorAll('.portfolio-image img');
+            imgs.forEach(img => {
+                if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
+                if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
+                img.addEventListener('error', () => {
+                    const item = img.closest('.portfolio-item');
+                    if (item) item.remove();
+                }, { once: true });
+            });
+        }
+        
+        // Modal
+        function initModal() {
+            function openModal(projectTitle) {
+                const projectData = {};
+                const modalTitle = document.getElementById('modalTitle');
+                const modalDescription = document.getElementById('modalDescription');
+                const modalCategory = document.getElementById('modalCategory');
+                const modalYear = document.getElementById('modalYear');
+                const modalMedium = document.getElementById('modalMedium');
+                if (modalTitle) modalTitle.textContent = projectTitle;
+                if (modalDescription) modalDescription.textContent = 'Detailed project view with additional visuals.';
+                if (modalCategory) modalCategory.textContent = 'Portfolio';
+                if (modalYear) modalYear.textContent = '2024';
+                if (modalMedium) modalMedium.textContent = '—';
+                const modal = document.getElementById('projectModal');
+                if (!modal) return;
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
-    }
-}
-
-// Close modal
-closeModal.addEventListener('click', () => {
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
-});
-
-// Close modal when clicking outside
-window.addEventListener('click', (e) => {
-    if (e.target === modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
-});
-
-// Close modal with Escape key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.style.display === 'block') {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
-});
-
-// Portfolio item click to open modal
-portfolioItems.forEach(item => {
-    item.addEventListener('click', () => {
-        const projectTitle = item.querySelector('.overlay-content h3').textContent;
-        openModal(projectTitle);
-    });
-});
-
-// Smooth scroll to top when filter changes
-filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        setTimeout(() => {
-            window.scrollTo({
-                top: document.querySelector('.portfolio-grid').offsetTop - 100,
-                behavior: 'smooth'
+                setTimeout(() => {
+                    const modalContent = modal.querySelector('.modal-content');
+                    modalContent.style.opacity = '1';
+                    modalContent.style.transform = 'translateY(0) scale(1)';
+                }, 10);
+            }
+            document.querySelectorAll('.view-project-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const card = this.closest('.portfolio-item');
+                    const title = card?.querySelector('.overlay-content h3')?.textContent || 'Project';
+                    openModal(title);
+                });
             });
-        }, 100);
-    });
-});
-
-// Lazy loading for portfolio images (if real images are added)
-const portfolioImages = document.querySelectorAll('.portfolio-image img');
-const imageObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const img = entry.target;
-            if (img.dataset.src) {
-                img.src = img.dataset.src;
-                img.classList.remove('lazy');
-                imageObserver.unobserve(img);
+            if (closeModal) closeModal.addEventListener('click', closeModalWithAnimation);
+            const modal = document.getElementById('projectModal');
+            window.addEventListener('click', (e) => { if (e.target === modal) closeModalWithAnimation(); });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal && modal.style.display === 'block') closeModalWithAnimation(); });
+            function closeModalWithAnimation() {
+                const modalContent = modal.querySelector('.modal-content');
+                modalContent.style.opacity = '0';
+                modalContent.style.transform = 'translateY(-50px) scale(0.95)';
+                setTimeout(() => {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+                    modalContent.style.opacity = '1';
+                    modalContent.style.transform = 'translateY(0) scale(1)';
+                }, 300);
             }
         }
-    });
-});
-
-portfolioImages.forEach(img => imageObserver.observe(img));
-
-// Add loading animation for portfolio items
-window.addEventListener('load', () => {
-    portfolioItems.forEach((item, index) => {
-        setTimeout(() => {
-            item.style.opacity = '1';
-            item.style.transform = 'translateY(0)';
-        }, index * 100);
-    });
-});
-
-// Hover effects for portfolio items
-portfolioItems.forEach(item => {
-    item.addEventListener('mouseenter', () => {
-        item.style.transform = 'translateY(-10px) scale(1.02)';
-    });
+        
+        initPortfolioFiltering();
+        enhanceImages();
+        initModal();
+        console.log('Portfolio functionality initialized successfully!');
+    }
     
-    item.addEventListener('mouseleave', () => {
-        item.style.transform = 'translateY(0) scale(1)';
-    });
-});
-
-// Filter button hover effects
-filterButtons.forEach(button => {
-    button.addEventListener('mouseenter', () => {
-        if (!button.classList.contains('active')) {
-            button.style.transform = 'translateY(-2px)';
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initPortfolioPage);
+    } else {
+        initPortfolioPage();
+    }
+    window.addEventListener('load', function() {
+        if (!window.PortfolioPage.initialized) {
+            console.log('Initializing portfolio from window load...');
+            initPortfolioPage();
+            window.PortfolioPage.initialized = true;
         }
     });
-    
-    button.addEventListener('mouseleave', () => {
-        if (!button.classList.contains('active')) {
-            button.style.transform = 'translateY(0)';
-        }
-    });
-}); 
+    window.PortfolioPage.init = initPortfolioPage;
+})(); 

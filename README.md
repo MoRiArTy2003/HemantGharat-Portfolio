@@ -1,215 +1,148 @@
-# Hemant Gharat - Artist Portfolio Website
+# Hemant Gharat - Artist & Designer Website
 
-A modern, responsive artist portfolio website inspired by contemporary design principles. This website showcases artwork, provides information about the artist, and offers multiple ways for visitors to get in touch.
+A modern, responsive website showcasing the work of Hemant Gharat, a contemporary artist and designer specializing in calligraphy, abstract painting, and interior design.
 
-## 🌟 Features
+## Features
 
-### Design & User Experience
-- **Modern, Clean Design**: Minimalist aesthetic with focus on content
-- **Fully Responsive**: Optimized for desktop, tablet, and mobile devices
-- **Smooth Animations**: Subtle animations and transitions for enhanced UX
-- **Accessibility**: WCAG compliant with proper semantic HTML and ARIA labels
-- **Fast Loading**: Optimized performance with efficient CSS and JavaScript
+- **Responsive Design**: Optimized for all devices and screen sizes
+- **Portfolio Gallery**: Showcase of artwork and design projects
+- **Contact Form**: Functional contact form with email integration
+- **Social Media Integration**: Links to Instagram, Facebook, and YouTube
+- **Modern UI/UX**: Clean, professional design with smooth animations
+- **SEO Optimized**: Proper meta tags and semantic HTML structure
 
-### Pages & Functionality
-1. **Home Page** (`index.html`)
-   - Hero section with call-to-action buttons
-   - Featured work showcase
-   - About preview section
-   - Professional footer with social links
+## Pages
 
-2. **Portfolio Page** (`portfolio.html`)
-   - Filterable gallery by category (Paintings, Digital Art, Photography, Illustrations)
-   - Interactive project modals with detailed information
-   - Smooth animations and hover effects
-   - Responsive grid layout
+1. **Home** (`index.html`) - Landing page with featured work and about preview
+2. **Portfolio** (`portfolio.html`) - Gallery of artwork and design projects
+3. **News** (`news.html`) - Latest updates, exhibitions, and press coverage
+4. **About** (`about.html`) - Artist biography and background information
+5. **Contact** (`contact.html`) - Contact form and information
 
-3. **About Page** (`about.html`)
-   - Artist biography and personal story
-   - Skills and expertise sections
-   - Education and experience timeline
-   - Awards and recognition
-   - Personal interests and hobbies
+## Contact Information
 
-4. **Contact Page** (`contact.html`)
-   - Comprehensive contact form with validation
-   - Contact information and business hours
-   - Social media links
-   - FAQ section
-   - Map placeholder for studio location
+- **Email**: g.hemant29@gmail.com
+- **Phone**: +91 88790 14060
+- **Social Media**:
+  - Instagram: [@hheymantgharatt](https://www.instagram.com/hheymantgharatt/?igsh=aDBuaDJyNjBwMHBh#)
+  - Facebook: [hemant.gharat](https://www.facebook.com/hemant.gharat)
+  - YouTube: [@hemantgharat](https://www.youtube.com/@hemantgharat)
 
-### Technical Features
-- **Mobile-First Design**: Responsive navigation with hamburger menu
-- **Form Validation**: Real-time validation with user feedback
-- **Interactive Elements**: Hover effects, smooth scrolling, and animations
-- **Cross-Browser Compatible**: Works on all modern browsers
-- **SEO Optimized**: Proper meta tags and semantic structure
+## Contact Form Setup
 
-## 🛠️ Technology Stack
+The contact form is configured to send emails to `g.hemant29@gmail.com` when users submit the form using **EmailJS** - a client-side email service that requires no server-side code.
 
-- **HTML5**: Semantic markup and modern HTML features
-- **CSS3**: 
-  - Flexbox and Grid for layouts
-  - CSS Custom Properties (variables)
-  - Modern CSS features (backdrop-filter, etc.)
-  - Responsive design with media queries
-- **JavaScript (ES6+)**: 
-  - Vanilla JavaScript (no frameworks)
-  - Modern async/await syntax
-  - DOM manipulation and event handling
-- **Font Awesome**: Icons for enhanced visual appeal
-- **Google Fonts**: Inter font family for typography
+### Requirements
 
-## 📁 File Structure
+- Any web hosting service (static hosting works perfectly)
+- EmailJS account (free tier available)
+- Gmail account for email service
+
+### Setup Instructions
+
+1. **Follow EmailJS Setup Guide**: See `EMAILJS_SETUP.md` for detailed instructions
+2. **Create EmailJS Account**: Sign up at [EmailJS.com](https://www.emailjs.com/)
+3. **Configure Email Service**: Connect your Gmail account
+4. **Create Email Templates**: Set up notification and confirmation templates
+5. **Update Public Key**: Replace the placeholder in `contact.html`
+6. **Test**: Submit a test contact form to verify emails are being sent
+
+### EmailJS Benefits
+
+- ✅ **No PHP required** - Works on any static hosting
+- ✅ **Free tier available** - 200 emails per month
+- ✅ **Professional emails** - Custom templates and branding
+- ✅ **Automatic confirmations** - Users get confirmation emails
+- ✅ **Secure** - Encrypted API calls
+- ✅ **Reliable** - 99.9% uptime guarantee
+
+### Alternative Email Solutions
+
+If you prefer not to use EmailJS:
+
+1. **Formspree**: Use Formspree.io for simple form handling
+2. **Netlify Forms**: If hosting on Netlify, use their built-in form handling
+3. **Google Forms**: Free but less professional appearance
+4. **Mailchimp**: For marketing-focused forms
+
+## File Structure
 
 ```
 website/
-├── index.html              # Home page
-├── portfolio.html          # Portfolio page
-├── about.html             # About page
-├── contact.html           # Contact page
-├── styles.css             # Main stylesheet
-├── portfolio.css          # Portfolio-specific styles
-├── about.css              # About page styles
-├── contact.css            # Contact page styles
-├── script.js              # Main JavaScript functionality
-├── portfolio.js           # Portfolio page JavaScript
-├── contact.js             # Contact page JavaScript
-├── HG_logo.jpg            # Logo image (existing)
-└── README.md              # Project documentation
+├── index.html          # Home page
+├── about.html          # About page
+├── portfolio.html      # Portfolio page
+├── news.html          # News page
+├── contact.html       # Contact page
+├── styles.css         # Main stylesheet
+├── contact.css        # Contact page styles
+├── about.css          # About page styles
+├── portfolio.css      # Portfolio page styles
+├── news.css           # News page styles
+├── script.js          # Main JavaScript
+├── contact.js         # Contact form JavaScript (EmailJS)
+├── portfolio.js       # Portfolio gallery JavaScript
+├── news.js            # News page JavaScript
+├── .htaccess          # Server configuration
+├── 404.html           # Custom error page
+├── README.md          # Project documentation
+├── EMAILJS_SETUP.md   # EmailJS setup guide
+└── images/            # Image assets
+    ├── Misc/          # Miscellaneous images
+    ├── News/          # News images
+    └── Paintings/     # Artwork images
 ```
 
-## 🚀 Getting Started
+## Customization
 
-### Prerequisites
-- A modern web browser (Chrome, Firefox, Safari, Edge)
-- A local web server (optional, for development)
+### Colors and Styling
+- Main colors are defined in `styles.css`
+- Each page has its own CSS file for specific styling
+- Font families: Inter (sans-serif) and Allura (cursive)
 
-### Installation
-1. Clone or download the project files
-2. Open `index.html` in your web browser
-3. Navigate through the different pages using the navigation menu
+### Content Updates
+- Update text content directly in HTML files
+- Replace images in the `images/` directory
+- Modify contact information in all HTML files
 
-### Development Setup
-For the best development experience:
-1. Use a local web server (e.g., Live Server in VS Code)
-2. Open the project in a code editor with HTML/CSS/JS support
-3. Make changes to the files and refresh the browser to see updates
+### Social Media Links
+- Instagram: Update the Instagram URL in all HTML files
+- Facebook: Update the Facebook URL in all HTML files
+- YouTube: Update the YouTube URL in all HTML files
 
-## 🎨 Customization
+## Browser Support
 
-### Colors
-The website uses a consistent color palette defined in CSS variables:
-- Primary: `#667eea` (Blue gradient)
-- Secondary: `#764ba2` (Purple gradient)
-- Text: `#333` (Dark gray)
-- Background: `#f8f9fa` (Light gray)
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+- Mobile browsers (iOS Safari, Chrome Mobile)
 
-### Content
-- Update text content in the HTML files
-- Replace placeholder images with actual artwork
-- Modify contact information and social media links
-- Customize the artist biography and personal information
+## Performance Optimizations
 
-### Styling
-- Modify CSS variables in `styles.css` for global changes
-- Edit page-specific styles in their respective CSS files
-- Adjust responsive breakpoints as needed
+- Optimized images for web
+- Minified CSS and JavaScript (recommended for production)
+- Lazy loading for images (can be implemented)
+- CDN for external resources (Font Awesome, Google Fonts)
 
-## 📱 Responsive Design
+## Security Considerations
 
-The website is fully responsive with breakpoints at:
-- **Desktop**: 1200px and above
-- **Tablet**: 768px - 1199px
-- **Mobile**: 480px - 767px
-- **Small Mobile**: Below 480px
+- Input validation and sanitization in PHP
+- CSRF protection (recommended for production)
+- Rate limiting for contact form (recommended)
+- HTTPS encryption (recommended for production)
 
-## 🔧 Browser Support
+## Deployment
 
-- Chrome 60+
-- Firefox 55+
-- Safari 12+
-- Edge 79+
+1. **Local Development**: Use a local web server (XAMPP, WAMP, etc.)
+2. **Shared Hosting**: Upload files to your web hosting provider
+3. **VPS/Dedicated Server**: Deploy to your own server
+4. **Static Hosting**: Convert to static site if using alternative email solutions
 
-## 📧 Contact Form
+## Support
 
-The contact form includes:
-- Real-time validation
-- Character counter for message field
-- Loading states
-- Success/error messages
-- Accessibility features
+For technical support or customization requests, contact the developer or refer to the documentation of the technologies used.
 
-**Note**: The form currently simulates submission. To make it functional, you'll need to:
-1. Set up a backend server
-2. Configure email sending (e.g., using Node.js, PHP, or a service like Formspree)
-3. Update the form submission handler in `contact.js`
+## License
 
-## 🎯 SEO Features
-
-- Semantic HTML structure
-- Proper heading hierarchy
-- Meta tags for description and keywords
-- Open Graph tags for social sharing
-- Alt text for images
-- Clean URL structure
-
-## 🔒 Security Considerations
-
-- Form validation on both client and server side
-- Input sanitization
-- HTTPS recommended for production
-- Regular security updates
-
-## 🚀 Deployment
-
-### Static Hosting
-The website can be deployed to any static hosting service:
-- **Netlify**: Drag and drop the folder
-- **Vercel**: Connect your GitHub repository
-- **GitHub Pages**: Push to a GitHub repository
-- **AWS S3**: Upload files to an S3 bucket
-
-### Custom Domain
-1. Purchase a domain name
-2. Configure DNS settings
-3. Update the hosting provider settings
-4. Update any hardcoded URLs in the code
-
-## 📈 Performance Optimization
-
-- Optimized images (WebP format recommended)
-- Minified CSS and JavaScript for production
-- Lazy loading for images
-- Efficient CSS selectors
-- Minimal JavaScript footprint
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 🙏 Acknowledgments
-
-- Font Awesome for icons
-- Google Fonts for typography
-- Unsplash for placeholder images (if used)
-- The creative community for inspiration
-
-## 📞 Support
-
-For questions or support:
-- Create an issue in the repository
-- Contact through the website's contact form
-- Email: 
-
----
-
-**Built with ❤️ for showcasing creative work** 
+This website is created for Hemant Gharat. All rights reserved. 

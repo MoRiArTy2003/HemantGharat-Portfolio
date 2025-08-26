@@ -128,22 +128,45 @@ contactForm.addEventListener('submit', async (e) => {
     
     // Show loading state
     submitBtn.classList.add('loading');
-    submitBtn.innerHTML = '<i class="fas fa-spinner"></i> Sending...';
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
     
     // Collect form data
     const formData = {
         name: nameField.value.trim(),
         email: emailField.value.trim(),
-        subject: document.getElementById('subject').value,
+        subject: document.getElementById('subject').value || 'New Contact Form Submission',
         message: messageField.value.trim(),
-        budget: document.getElementById('budget').value,
-        timeline: document.getElementById('timeline').value,
+        budget: document.getElementById('budget').value || 'Not specified',
+        timeline: document.getElementById('timeline').value || 'Not specified',
         timestamp: new Date().toISOString()
     };
     
     try {
-        // Simulate form submission (replace with actual API call)
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        // Send email using EmailJS
+        const templateParams = {
+            to_email: 'g.hemant29@gmail.com',
+            from_name: formData.name,
+            from_email: formData.email,
+            subject: formData.subject,
+            message: formData.message,
+            budget: formData.budget,
+            timeline: formData.timeline,
+            timestamp: formData.timestamp
+        };
+
+        // Send email to you
+        await emailjs.send('service_hemant_gharat', 'template_contact_form', templateParams);
+        
+        // Send confirmation email to the user
+        const userTemplateParams = {
+            to_email: formData.email,
+            from_name: 'Hemant Gharat',
+            user_name: formData.name,
+            subject: formData.subject,
+            message: formData.message
+        };
+        
+        await emailjs.send('service_hemant_gharat', 'template_user_confirmation', userTemplateParams);
         
         // Show success message
         showSuccess('Thank you for your message! I will get back to you within 24-48 hours.');
@@ -162,7 +185,7 @@ contactForm.addEventListener('submit', async (e) => {
         
     } catch (error) {
         console.error('Error submitting form:', error);
-        showError(submitBtn, 'There was an error sending your message. Please try again.');
+        showError(submitBtn, 'There was an error sending your message. Please try again or contact me directly at g.hemant29@gmail.com');
     } finally {
         // Reset button state
         submitBtn.classList.remove('loading');
@@ -230,10 +253,6 @@ document.querySelectorAll('.social-section .social-link').forEach(link => {
     link.addEventListener('click', (e) => {
         // Add click tracking (replace with actual analytics)
         console.log('Social link clicked:', link.querySelector('span').textContent);
-        
-        // You can add actual social media URLs here
-        // e.preventDefault();
-        // window.open('actual-social-media-url', '_blank');
     });
 });
 
